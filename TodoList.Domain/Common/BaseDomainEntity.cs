@@ -1,12 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace TodoList.Domain.Common
 {
-    internal class BaseDomainEntity
+    public abstract class BaseDomainEntity
     {
+        [Required, Key]
+        public int Id { get; set; }
+        [Required]
+        public string CreatedBy { get; set; }
+        public DateTime CreatedDate { get; set; }
     }
 }
