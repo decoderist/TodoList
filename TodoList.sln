@@ -15,7 +15,19 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastru
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UI", "UI", "{6D0BD8F1-7CE6-499E-98EF-8B82AC4D895F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TodoList.Domain", "TodoList.Domain\TodoList.Domain.csproj", "{23B99C13-0E31-47AD-B979-27E509DED412}"
+EndProject
 Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{23B99C13-0E31-47AD-B979-27E509DED412}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{23B99C13-0E31-47AD-B979-27E509DED412}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{23B99C13-0E31-47AD-B979-27E509DED412}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{23B99C13-0E31-47AD-B979-27E509DED412}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
@@ -24,6 +36,7 @@ Global
 		{0ED9ADC3-3A11-4930-A87A-715EE9689B15} = {2D29FB99-64EE-4188-BE6B-3CCA762CE303}
 		{03FFB42D-203A-425F-8277-42807C6B1716} = {2D29FB99-64EE-4188-BE6B-3CCA762CE303}
 		{6D0BD8F1-7CE6-499E-98EF-8B82AC4D895F} = {2D29FB99-64EE-4188-BE6B-3CCA762CE303}
+		{23B99C13-0E31-47AD-B979-27E509DED412} = {0ED9ADC3-3A11-4930-A87A-715EE9689B15}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {7D0D0C6A-515D-4657-A41C-F8F444FADAF9}
