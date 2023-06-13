@@ -12,10 +12,6 @@ namespace todoTest.Application.Contracts.Persistence
     {
         Task<T> GetItem(Guid id);
         Task<IReadOnlyList<T>> GetAll();
-        Task<bool> Exist(int id);
-        Task<bool> AddItem(T entity, ApplicationUser currentUser);
-        Task<bool> UpdateItem(T entity, ApplicationUser currentUser);
-        Task<bool> DeleteItem(Guid id, ApplicationUser currentUser);
-
+        Task<bool> Exist(Guid id);
     }
 }

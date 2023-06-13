@@ -15,7 +15,9 @@ namespace TodoList.Application.Contracts.Persistence
         Task<IEnumerable<TodoItem>> GetCompleteItems(ApplicationUser currentUser);
         Task<IEnumerable<TodoItem>> GetItemsByTag(ApplicationUser currentUser, string tag);
         Task<bool> UpdateDone(Guid id, ApplicationUser currentUser);
-        Task<IEnumerable<TodoItem>> GetRecentlyAddedItems(ApplicationUser currentUser);
+        Task<bool> AddItem(TodoItem todo, ApplicationUser currentUser);
+        Task<bool> UpdateItem(TodoItem editedTodo, ApplicationUser currentUser);
+        Task<bool> DeleteItem(Guid id, ApplicationUser currentUser);
 
     }
 }
