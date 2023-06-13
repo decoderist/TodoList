@@ -7,7 +7,7 @@ using todoTest.Application.Contracts.Persistence;
 
 namespace TodoList.Persistence
 {
-    public static class PersistenceServiceRegistration
+    public static class PersistenceServicesRegistration
     {
         public static IServiceCollection ConfigurePersistenceServices(this IServiceCollection services, IConfiguration configuration)
         {
