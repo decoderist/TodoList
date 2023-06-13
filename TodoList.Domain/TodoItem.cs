@@ -4,7 +4,7 @@ using TodoList.Domain.Common;
 
 namespace TodoList.Domain
 {
-    public class Todotem : BaseDomainEntity
+    public class TodoItem : BaseDomainEntity
     {
         [Required]
         [MinLength(3)]
