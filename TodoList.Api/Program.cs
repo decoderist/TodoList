@@ -1,4 +1,6 @@
+using Microsoft.AspNetCore.Identity;
 using TodoList.Application;
+using TodoList.Domain.Common;
 using TodoList.Infrastracture;
 using TodoList.Persistence;
 
@@ -6,9 +8,11 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
-builder.Services.ConfigureApplicationServices(); ;
+builder.Services.ConfigureApplicationServices();
 builder.Services.ConfigureInfrastructureServices(builder.Configuration);
 builder.Services.ConfigurePersistenceServices(builder.Configuration);
+
+builder.Services.AddIdentity<ApplicationUser, IdentityRole>().AddEntityFrameworkStores<TodoListDbContext>();
 
 
 builder.Services.AddControllers();
