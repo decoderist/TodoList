@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using TodoList.Application.Contracts.Persistence;
 using TodoList.Application.DTOs;
 using TodoList.Domain;
-using TodoList.Domain.Common;
+using TodoList.Application.Models.Identity;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -12,13 +12,13 @@ namespace TodoList.Api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class TodoItemsController : ControllerBase
+    public class TodoItemController : ControllerBase
     {
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly ITodoItemRepository _todoItem;
         private readonly IMapper _mapper;
 
-        public TodoItemsController(UserManager<ApplicationUser> userManager,
+        public TodoItemController(UserManager<ApplicationUser> userManager,
             ITodoItemRepository todoItem,
             IMapper mapper)
         {

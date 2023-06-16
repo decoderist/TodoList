@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using TodoList.Application.Contracts.Persistence;
 using TodoList.Domain;
-using TodoList.Domain.Common;
+using TodoList.Application.Models.Identity;
 
 namespace TodoList.Persistence.Repositories
 {

@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TodoList.Application.Models.Identity;
 using TodoList.Domain;
-using TodoList.Domain.Common;
 using todoTest.Application.Contracts.Persistence;
 
 namespace TodoList.Application.Contracts.Persistence
