@@ -13,7 +13,7 @@ namespace TodoList.Identity.Services
     {
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly SignInManager<ApplicationUser> _signInManager;
-        private readonly JwtSettings _jwtSettings;
+        private readonly IOptions<JwtSettings> _jwtSettings;
 
         public AuthService(UserManager<ApplicationUser> userManager,
             IOptions<JwtSettings> jwtSettings,
@@ -21,7 +21,7 @@ namespace TodoList.Identity.Services
         {
             _userManager = userManager;
             _signInManager = signInManager;
-            _jwtSettings = (JwtSettings)jwtSettings;
+            _jwtSettings = jwtSettings;
         }
         public async Task<AuthResponse> Login(AuthRequest request)
         {
@@ -75,14 +75,14 @@ namespace TodoList.Identity.Services
             .Union(userClaims)
             .Union(roleClaims);
 
-            var symmerticSecurityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_jwtSettings.Key));
+            var symmerticSecurityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_jwtSettings.Value.Key));
             var signInCredentials = new SigningCredentials(symmerticSecurityKey, SecurityAlgorithms.HmacSha256);
 
             var jwtSecurityToken = new JwtSecurityToken(
-                issuer: _jwtSettings.Issuer,
-                audience: _jwtSettings.Audience,
+                issuer: _jwtSettings.Value.Issuer,
+                audience: _jwtSettings.Value.Audience,
                 claims: claims,
-                expires: DateTime.UtcNow.AddMinutes(_jwtSettings.DurationInMinutes),
+                expires: DateTime.UtcNow.AddMinutes(_jwtSettings.Value.DurationInMinutes),
                 signingCredentials: signInCredentials);
 
             return jwtSecurityToken;
