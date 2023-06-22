@@ -40,6 +40,30 @@ namespace TodoList.Persistence.Repositories
                 .ToArrayAsync();
         }
 
+        public async Task<IEnumerable<TodoItem>> GetRecentlyAddedItems(ApplicationUser currentUser)
+        {
+            return await _dbContext.TodoItems
+                .Where(t => t.CreatedBy == currentUser.Id && !t.Done
+                /*&& DateTime.Compare(DateTime.UtcNow.AddDays(-1), t.Added.ToDateTimeUtc()) <= 0*/)
+                .ToArrayAsync();
+        }
+
+        public async Task<IEnumerable<TodoItem>> GetDueTo2DaysItems(ApplicationUser user)
+        {
+            return await _dbContext.TodoItems
+                .Where(t => t.CreatedBy == user.Id && !t.Done
+                /*&& DateTime.Compare(DateTime.UtcNow.AddDays(1), t.DueTo.ToDateTimeUtc()) >= 0*/)
+                .ToArrayAsync();
+        }
+
+        public async Task<IEnumerable<TodoItem>> GetMonthlyItems(ApplicationUser user, int month)
+        {
+            return await _dbContext.TodoItems
+                .Where(t => t.CreatedBy == user.Id && !t.Done)
+                //.Where(t => t.DueTo.ToDateTimeUtc().Month == month)
+                .ToArrayAsync();
+        }
+
         public async Task<bool> AddItem(TodoItem todo, ApplicationUser curretUser)
         {
             todo.Id = Guid.NewGuid();

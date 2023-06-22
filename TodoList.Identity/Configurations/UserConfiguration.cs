@@ -19,7 +19,7 @@ namespace TodoList.Identity.Configurations
                 new ApplicationUser
                 {
                     //Id = "ecf16303-535a-4090-b1d0-f25acc9cb105",
-                    Email = "user@Email.com",
+                    Email = "user@email.com",
                     NormalizedEmail = "USER@EMAIL.COM",
                     FirstName = "User",
                     LastName = "UserFamily",
