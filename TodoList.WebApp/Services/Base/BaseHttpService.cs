@@ -17,15 +17,15 @@ namespace TodoList.WebApp.Services.Base
         {
             if (ex.StatusCode == 400)
             {
-                return new Response<Guid>() { Message = "Validation error have occurd.", ValidationError = ex.Response, Success = "false" };
+                return new Response<Guid>() { Message = "Validation error have occurd.", ValidationError = ex.Response, Success = false };
             }
             else if (ex.StatusCode == 404)
             {
-                return new Response<Guid>() { Message = "The requested item couldn't be found", Success = "false" };
+                return new Response<Guid>() { Message = "The requested item couldn't be found", Success = false };
             }
             else
             {
-                return new Response<Guid>() { Message = "Somthing went wrong, please try again", Success = "false" };
+                return new Response<Guid>() { Message = "Somthing went wrong, please try again", Success = false };
             }
         }
         protected void AddBearerToken()

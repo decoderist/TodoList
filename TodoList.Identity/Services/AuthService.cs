@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.SignalR;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
@@ -31,8 +32,8 @@ namespace TodoList.Identity.Services
                 throw new Exception($"User with {request.Email} not Found.");
             }
 
-            var result = await _signInManager.PasswordSignInAsync(user.UserName, request.Password,false, lockoutOnFailure: false);
-            if (!result.Succeeded) 
+            var result = await _signInManager.PasswordSignInAsync(user.UserName, request.Password, false, lockoutOnFailure: false);
+            if (!result.Succeeded)
             {
                 throw new Exception($"Credentials for {request.Email} aren't valid.");
             }
@@ -41,7 +42,7 @@ namespace TodoList.Identity.Services
 
             AuthResponse response = new AuthResponse
             {
-                Id=user.Id,
+                Id = user.Id,
                 Token = new JwtSecurityTokenHandler().WriteToken(jwtSecurityToken),
                 Email = user.Email,
                 UserName = user.UserName
@@ -49,15 +50,45 @@ namespace TodoList.Identity.Services
             return response;
         }
 
-        public Task<RegistrationResponse> Register(RegistrationRequest request)
+        public async Task<RegistrationResponse> Register(RegistrationRequest request)
         {
-            throw new NotImplementedException();
+            var existingUser = _userManager.FindByNameAsync(request.UserName);
+            if (existingUser != null)
+                throw new Exception($"UserName {request.UserName} already exists.");
+
+            ApplicationUser user = new()
+            {
+                UserName = request.UserName,
+                Email = request.Email,
+                FirstName = request.FirstName,
+                LastName = request.LastName,
+                EmailConfirmed = true
+            };
+
+            var existingEmail = await _userManager.FindByEmailAsync(request.Email);
+            if (existingEmail == null)
+            {
+                var result = await _userManager.CreateAsync(user, request.Password);
+
+                if (result.Succeeded)
+                {
+                    return new RegistrationResponse(){ UserId = user.Id };
+                }
+                else
+                {
+                    throw new Exception($"{result.Errors}");
+                }
+            }
+            else
+            {
+                throw new Exception($"Email {request.Email} already exists.");
+            }
         }
 
         private async Task<JwtSecurityToken> GenerateToken(ApplicationUser user)
         {
-            var userClaims=await _userManager.GetClaimsAsync(user);
-            var roles=await _userManager.GetRolesAsync(user);
+            var userClaims = await _userManager.GetClaimsAsync(user);
+            var roles = await _userManager.GetRolesAsync(user);
 
             var roleClaims = new List<Claim>();
 

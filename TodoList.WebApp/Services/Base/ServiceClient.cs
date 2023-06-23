@@ -125,13 +125,11 @@ namespace TodoList.WebApp.Services.Base
     [System.CodeDom.Compiler.GeneratedCode("NSwag", "13.19.0.0 (NJsonSchema v10.9.0.0 (Newtonsoft.Json v13.0.0.0))")]
     public partial class Client : IClient
     {
-        private string _baseUrl = "";
         private System.Net.Http.HttpClient _httpClient;
         private System.Lazy<Newtonsoft.Json.JsonSerializerSettings> _settings;
 
-        public Client(string baseUrl, System.Net.Http.HttpClient httpClient)
+        public Client(System.Net.Http.HttpClient httpClient)
         {
-            BaseUrl = baseUrl;
             _httpClient = httpClient;
             _settings = new System.Lazy<Newtonsoft.Json.JsonSerializerSettings>(CreateSerializerSettings);
         }
@@ -141,12 +139,6 @@ namespace TodoList.WebApp.Services.Base
             var settings = new Newtonsoft.Json.JsonSerializerSettings();
             UpdateJsonSerializerSettings(settings);
             return settings;
-        }
-
-        public string BaseUrl
-        {
-            get { return _baseUrl; }
-            set { _baseUrl = value; }
         }
 
         protected Newtonsoft.Json.JsonSerializerSettings JsonSerializerSettings { get { return _settings.Value; } }
@@ -170,7 +162,7 @@ namespace TodoList.WebApp.Services.Base
         public virtual async System.Threading.Tasks.Task<AuthResponse> LoginAsync(AuthRequest body, System.Threading.CancellationToken cancellationToken)
         {
             var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/Account/login");
+            urlBuilder_.Append("api/Account/login");
 
             var client_ = _httpClient;
             var disposeClient_ = false;
@@ -248,7 +240,7 @@ namespace TodoList.WebApp.Services.Base
         public virtual async System.Threading.Tasks.Task<RegistrationResponse> RegisterAsync(RegistrationRequest body, System.Threading.CancellationToken cancellationToken)
         {
             var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/Account/register");
+            urlBuilder_.Append("api/Account/register");
 
             var client_ = _httpClient;
             var disposeClient_ = false;
@@ -326,7 +318,7 @@ namespace TodoList.WebApp.Services.Base
         public virtual async System.Threading.Tasks.Task<System.Collections.Generic.ICollection<TodoItem>> TodoItemAllAsync(System.Threading.CancellationToken cancellationToken)
         {
             var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/TodoItem");
+            urlBuilder_.Append("api/TodoItem");
 
             var client_ = _httpClient;
             var disposeClient_ = false;
@@ -400,7 +392,7 @@ namespace TodoList.WebApp.Services.Base
         public virtual async System.Threading.Tasks.Task<TodoItem> TodoItemPOSTAsync(TodoItemDto body, System.Threading.CancellationToken cancellationToken)
         {
             var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/TodoItem");
+            urlBuilder_.Append("api/TodoItem");
 
             var client_ = _httpClient;
             var disposeClient_ = false;
@@ -478,7 +470,7 @@ namespace TodoList.WebApp.Services.Base
         public virtual async System.Threading.Tasks.Task<System.Collections.Generic.ICollection<TodoItem>> CompleteAsync(System.Threading.CancellationToken cancellationToken)
         {
             var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/TodoItem/complete");
+            urlBuilder_.Append("api/TodoItem/complete");
 
             var client_ = _httpClient;
             var disposeClient_ = false;
@@ -552,7 +544,7 @@ namespace TodoList.WebApp.Services.Base
         public virtual async System.Threading.Tasks.Task<System.Collections.Generic.ICollection<TodoItem>> IncompleteAsync(System.Threading.CancellationToken cancellationToken)
         {
             var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/TodoItem/incomplete");
+            urlBuilder_.Append("api/TodoItem/incomplete");
 
             var client_ = _httpClient;
             var disposeClient_ = false;
@@ -629,7 +621,7 @@ namespace TodoList.WebApp.Services.Base
                 throw new System.ArgumentNullException("tag");
 
             var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/TodoItem/bytag/{tag}");
+            urlBuilder_.Append("api/TodoItem/bytag/{tag}");
             urlBuilder_.Replace("{tag}", System.Uri.EscapeDataString(ConvertToString(tag, System.Globalization.CultureInfo.InvariantCulture)));
 
             var client_ = _httpClient;
@@ -707,7 +699,7 @@ namespace TodoList.WebApp.Services.Base
                 throw new System.ArgumentNullException("id");
 
             var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/TodoItem/{id}");
+            urlBuilder_.Append("api/TodoItem/{id}");
             urlBuilder_.Replace("{id}", System.Uri.EscapeDataString(ConvertToString(id, System.Globalization.CultureInfo.InvariantCulture)));
 
             var client_ = _httpClient;
@@ -785,7 +777,7 @@ namespace TodoList.WebApp.Services.Base
                 throw new System.ArgumentNullException("id");
 
             var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/TodoItem/{id}");
+            urlBuilder_.Append("api/TodoItem/{id}");
             urlBuilder_.Replace("{id}", System.Uri.EscapeDataString(ConvertToString(id, System.Globalization.CultureInfo.InvariantCulture)));
 
             var client_ = _httpClient;
@@ -867,7 +859,7 @@ namespace TodoList.WebApp.Services.Base
                 throw new System.ArgumentNullException("id");
 
             var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/TodoItem/{id}");
+            urlBuilder_.Append("api/TodoItem/{id}");
             urlBuilder_.Replace("{id}", System.Uri.EscapeDataString(ConvertToString(id, System.Globalization.CultureInfo.InvariantCulture)));
 
             var client_ = _httpClient;
@@ -942,7 +934,7 @@ namespace TodoList.WebApp.Services.Base
                 throw new System.ArgumentNullException("status");
 
             var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/TodoItem/{id}/{status}");
+            urlBuilder_.Append("api/TodoItem/{id}/{status}");
             urlBuilder_.Replace("{id}", System.Uri.EscapeDataString(ConvertToString(id, System.Globalization.CultureInfo.InvariantCulture)));
             urlBuilder_.Replace("{status}", System.Uri.EscapeDataString(ConvertToString(status, System.Globalization.CultureInfo.InvariantCulture)));
 
